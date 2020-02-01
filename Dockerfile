@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y rsync curl \
  	&& cd node \
  	&& ./configure \
  	&& make \
- 	&& sudo make install \
+ 	&& make install \
 	&& mix local.rebar --force \
 	&& mix local.hex --force
 
