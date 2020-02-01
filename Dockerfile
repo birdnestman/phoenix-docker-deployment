@@ -1,13 +1,13 @@
 FROM elixir:1.9.4
 
-RUN apt-get update && apt-get install -y rsync
+RUN apt-get update && apt-get install -y rsync curl \
+	&& git clone https://github.com/nodejs/node.git \
+ 	&& cd node \
+ 	&& ./configure \
+ 	&& make \
+ 	&& sudo make install \
+	&& mix local.rebar --force \
+	&& mix local.hex --force
 
-RUN bash <(curl -sL https://deb.nodesource.com/setup_10.x) 
-
-RUN apt install nodejs
-
-RUN mix local.rebar --force
-
-RUN mix local.hex --force
 
 CMD ["iex"]
