@@ -1,13 +1,8 @@
-FROM elixir:1.9.4
+FROM elixir:1.9.4-alpine
 
-RUN apt-get update && apt-get install -y rsync curl \
-	&& git clone https://github.com/nodejs/node.git \
- 	&& cd node \
- 	&& ./configure \
- 	&& make \
- 	&& make install \
-	&& mix local.rebar --force \
-	&& mix local.hex --force
+RUN apk add --update git build-base nodejs yarn python npm rsync
 
+RUN mix local.hex --force && \
+    mix local.rebar --force
 
 CMD ["iex"]
