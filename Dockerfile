@@ -1,4 +1,4 @@
-FROM elixir:1.9.4-alpine
+FROM elixir:1.10.0-alpine
 
 RUN apk add --update git build-base nodejs yarn python npm rsync
 
